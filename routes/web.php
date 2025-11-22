@@ -11,5 +11,5 @@ Route::get('/reservecars', [\App\Http\Controllers\ReserveCarController::class, '
 });
 
 Route::get('/reservecars/{reservecar}', [\App\Http\Controllers\ReserveCarController::class, 'show'], function () {
-    return view('reservecars.show');
+    return view('reservecars.index');
 });

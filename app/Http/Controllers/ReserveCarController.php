@@ -9,11 +9,15 @@ class ReserveCarController extends Controller
 {
     function index()
     {
-        return view(view:'reservecars.index');
+        $reservecars = \App\Models\Car::all();
+        return view('reservecars.index', compact('reservecars'));
     }
     
     function show($reservecar)
     {
-        return view('reservecars.show', compact(var_name: 'reservecar'));
+        $reservecar = \App\Models\Car::find($reservecar);
+        $reviews = \App\Models\Review::where('car_id', $reservecar->id)->get();
+
+        return view('reservecars.show', compact('reservecar', 'reviews'));
     }
 }
