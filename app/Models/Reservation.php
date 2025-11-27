@@ -17,4 +17,15 @@ class Reservation extends Model
         'total_price',
         'status',
     ];
+    
+    public function car()
+    {
+        return $this->belongsTo(Car::class);
+    }
+    
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
 }

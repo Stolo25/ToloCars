@@ -5,8 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class car extends Model
+class Car extends Model
 {
+    /** @use HasFactory<\Database\Factories\CarFactory> */
     use HasFactory;
 
     protected $fillable = [
@@ -18,5 +19,18 @@ class car extends Model
         'capacity',
         'price_per_day',
         'location',
+        'image',
     ];
+    
+    public function reservations()
+    {
+        return $this->hasMany(\App\Models\Reservation::class);
+    }
+    
+    /** To check easily if my user can book a car with datess */
+    public function isAvailable($startDate, $endDate)
+    {
+        return !$this->reservations()->where('start_date', '<=', $endDate)->where('end_date', '>=', $startDate)->exists();
+    }
+
 }

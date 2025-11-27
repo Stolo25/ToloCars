@@ -18,6 +18,12 @@ class CarFactory extends Factory
      */
     public function definition(): array
     {
+        $images = [
+            'https://www.autoshippers.co.uk/blog/wp-content/uploads/bugatti-centodieci.jpg',
+            'https://hips.hearstapps.com/hmg-prod/images/2022-chevrolet-corvette-z06-1607016574.jpg?crop=0.800xw:0.601xh;0.150xw,0.318xh&resize=1200:*',
+            'https://i.blogs.es/28e39b/cars/500_333.webp',
+        ];
+
         return [
             'user_id' => User::factory(), 
             'make' => $this->faker->randomElement(['Toyota', 'BMW', 'Audi', 'Ford', 'Tesla', 'Mercedes']),
@@ -27,6 +33,8 @@ class CarFactory extends Factory
             'capacity' => $this->faker->numberBetween(2, 7),
             'price_per_day' => $this->faker->randomFloat(2, 30, 300),
             'location' => $this->faker->city(),
+            'image' => $this->faker->randomElement($images),
+
         ];
     }
 }
