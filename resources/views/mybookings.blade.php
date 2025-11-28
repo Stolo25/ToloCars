@@ -83,6 +83,29 @@
             </button>
           </form>
         @endif
+        
+        
+        @if($reservation->status === 'approved')
+        <form action="{{ route('reservations.review') }}" method="POST" class="mt-4 border-t border-gray-200 pt-4">
+          @csrf
+          <input type="hidden" name="reservation_id" value="{{ $reservation->id }}">
+          <input type="hidden" name="car_id" value="{{ $reservation->car->id }}">
+          
+          
+          <div class="flex flex-col sm:flex-row gap-3 items-center">
+            <input type="number" name="rating" min="1" max="5" placeholder="Rating (1–5)" 
+            class="w-full sm:w-24 border border-gray-400 p-2 text-sm text-gray-800 focus:border-[#B4DD4E] focus:ring-0" required>
+            
+            <input type="text" name="comment" placeholder="Write your review..." 
+            class="flex-1 border border-gray-400 p-2 text-sm text-gray-800 focus:border-[#B4DD4E] focus:ring-0" required>
+            
+            <button type="submit" class="bg-[#B4DD4E] text-black border border-black font-semibold px-4 py-2 text-sm hover:opacity-90 transition">
+              Submit
+            </button>
+          </div>
+        </form>
+        @endif
+      
       </div>
     @empty
       <p class="text-gray-600 text-center mt-10 text-lg">You haven’t booked any cars yet.</p>

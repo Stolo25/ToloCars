@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Reservation;
 use Illuminate\Http\Request;
 use App\Models\Car;
+use App\Models\Review;
 
 class ReservationController extends Controller
 {
@@ -47,7 +48,19 @@ class ReservationController extends Controller
     }
     
     
-    
+    public function addReview(Request $request)
+    {
+        Review::create([
+        'user_id'=>auth()->id(),
+        'car_id'=>$request->car_id,
+        'reservation_id'=>$request->reservation_id,
+        'rating' =>$request->rating,
+        'comment' =>$request->comment,]);
+        
+        return back()->with('success', 'we will consider your thoughts');
+    }
+
+
     public function cancel($id)
     {
         $reservation = Reservation::where('id', $id)->where('user_id', auth()->id())->firstOrFail();

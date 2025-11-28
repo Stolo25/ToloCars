@@ -43,6 +43,8 @@ Route::post('/requests/{reservation}/approve', [\App\Http\Controllers\OwnerReque
 
 Route::post('/requests/{reservation}/reject', [\App\Http\Controllers\OwnerRequestController::class, 'reject'])->middleware('auth')->name('requests.reject');
 
+/** leave a review function */
+Route::post('/reviews', [\App\Http\Controllers\ReviewController::class, 'store'])->middleware('auth')->name('reviews.store');
 
 /**upload or edit my own car listed */
 Route::get('/uploadcar', [\App\Http\Controllers\UploadCarController::class, 'index'])->middleware('auth')->name('uploadcar');

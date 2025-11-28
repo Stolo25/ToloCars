@@ -26,6 +26,11 @@ class Car extends Model
     {
         return $this->hasMany(\App\Models\Reservation::class);
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
     
     /** To check easily if my user can book a car with datess */
     public function isAvailable($startDate, $endDate)
