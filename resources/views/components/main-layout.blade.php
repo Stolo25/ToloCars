@@ -36,6 +36,12 @@
           <a href="{{ url('/profile') }}" class="inline-block px-5 py-1.5 border border-gray-300 hover:border-gray-400 rounded text-sm text-gray-800">
             Profile 
           </a>
+          <form method="POST" action="{{ route('logout') }}">
+            @csrf
+            <button type="submit" class="text-gray-700 hover:text-red-600">
+              logout
+            </button>
+          </form>
             
             
             @else

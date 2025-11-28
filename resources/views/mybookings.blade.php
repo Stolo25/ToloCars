@@ -9,8 +9,10 @@
         <strong>Success:</strong> {{ session('Congratulations') }}
       </div>
 
+      @elseif(session('Congratulations'))
+
       <div class="bg-red-50 border border-red-400 text-red-800 px-4 py-3 mb-8">
-        <strong>Error:</strong> {{ session('error') }}
+        <strong>Error:</strong> {{ session('Unavaliable') }}
       </div>
     @endif
 
